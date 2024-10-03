@@ -12,12 +12,12 @@ def euclidean_distance(c1, c2):
     return math.sqrt(d1+d2+d3)
 
 def find_closest(rgb):
-    color1 = xyz_to_cielab(rgb_to_xyz(rgb))
+    color1 = rgb
     choosen = 0
-    last_distance = euclidean_distance(color1, xyz_to_cielab(rgb_to_xyz(Palette.C64[choosen])))
+    last_distance = euclidean_distance(color1, Palette.C64[choosen])
 
     for i in range(1, len(Palette.C64)):
-        current_cielab = xyz_to_cielab(rgb_to_xyz(Palette.C64[i]))
+        current_cielab = Palette.C64[i]
         current_distance = euclidean_distance(color1, current_cielab)
         if (current_distance < last_distance): 
             choosen = i
