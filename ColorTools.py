@@ -1,10 +1,27 @@
 import math
-
 # Reference: 2° Daylight, sRGB, Adobe-RGB
 # Source: http://www.easyrgb.com/en/math.php
 REFERENCE_X = 95.047
 REFERENCE_Y = 100.0
 REFERENCE_Z = 108.883
+
+def euclidean_distance(c1, c2):
+    d1 = math.pow(c1[0]-c2[0], 2)
+    d2 = math.pow(c1[1]-c2[1], 2)
+    d3 = math.pow(c1[2]-c2[2], 2)
+    return math.sqrt(d1+d2+d3)
+
+def find_closest(color, palette):
+    choosen_index = 0
+    last_distance = euclidean_distance(color, palette[0])
+
+    for i in range(1, len(palette)):
+        distance = euclidean_distance(color, palette[i])
+        if (distance < last_distance): 
+            choosen_index = i
+            last_distance = distance
+
+    return choosen_index
 
 def rgb_to_xyz(rgb=[]):
     r = rgb[0] / 255
