@@ -1,7 +1,7 @@
 import C64Palette
 import numpy
 import math
-from ColorConversion import rgb_to_xyz, xyz_to_cielab, cielab_to_xyz, xyz_to_rgb
+from ColorConversion import rgb_to_xyz, xyz_to_lab, lab_to_xyz, xyz_to_rgb
 from PIL import Image
 
 C64Palette.init_palettes()
@@ -35,7 +35,7 @@ with Image.open(img_input_file) as pic:
     pic_cs = numpy.empty((pic.height, pic.width, 3), dtype=numpy.float32)
     for y in  range(0, pic.height):
         for x in range(0, pic.width):
-            pic_cs[y,x] = xyz_to_cielab(rgb_to_xyz(pic_array[y,x]))
+            pic_cs[y,x] = xyz_to_lab(rgb_to_xyz(pic_array[y,x]))
 
     print('Applying palette...')
     for y in  range(0, pic.height):
@@ -45,7 +45,7 @@ with Image.open(img_input_file) as pic:
     print('Converting to 32bit RGB')
     for y in  range(0, pic.height):
         for x in range(0, pic.width):
-            pic_array[y,x] = xyz_to_rgb(cielab_to_xyz(pic_cs[y,x]))
+            pic_array[y,x] = xyz_to_rgb(lab_to_xyz(pic_cs[y,x]))
 
     print('Saving', img_output_file)
     Image.fromarray(pic_array).save(img_output_file)

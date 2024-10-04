@@ -27,7 +27,7 @@ def rgb_to_xyz(rgb=[]):
     z = r * 0.0193 + g * 0.1192 + b * 0.9505
     return [x,y,z]
 
-def xyz_to_cielab(xyz=[]):    
+def xyz_to_lab(xyz=[]):    
     x = xyz[0] / REFERENCE_X
     y = xyz[1] / REFERENCE_Y
     z = xyz[2] / REFERENCE_Z
@@ -44,7 +44,7 @@ def xyz_to_cielab(xyz=[]):
     b = 200 * (y - z)
     return [l,a,b]
 
-def cielab_to_xyz(lab=[]):
+def lab_to_xyz(lab=[]):
     l = lab[0]
     a = lab[1]
     b = lab[2]

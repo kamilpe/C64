@@ -25,6 +25,6 @@ LAB = []
 def init_palettes():
     for i in range(0,len(RGB)):
         xyz = rgb_to_xyz(RGB[i])
-        lab = xyz_to_cielab(xyz)
+        lab = xyz_to_lab(xyz)
         XYZ.append(xyz)
         LAB.append(lab)
